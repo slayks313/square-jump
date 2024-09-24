@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Квадратная Прыжок</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Главное меню -->
+    <div id="main-menu" class="screen active">
+        <h1>Квадратная Прыжок</h1>
+        <p id="total-coins">Всего монет: 0</p>
+        <button id="play-button">Играть</button>
+        <button id="openModal"><img src="set.png" alt=""></button>
+
+    </div>
+   
+    <div id="myModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+           <button class="btn" ><a href="sayt.html">наш сайт</a></button>
+
+           <label for="muteToggle" style="cursor: pointer;">
+            <input type="checkbox" id="muteToggle" >
+            <h4>Отключить звук</h4>
+        </label>
+        <label for="musicToggle" style="cursor: pointer;">
+            <input type="checkbox" id="musicToggle" >
+            <h4>Включить звук</h4>
+            
+        </label>
+        
+        </div>
+    </div>
+    
+
+    <!-- Игровое поле -->
+    <canvas id="gameCanvas" class="screen"></canvas>
+
+    <!-- Экран окончания игры -->
+    <div id="game-over" class="screen">
+        <h1>Игра окончена</h1>
+        <p id="final-score">Счет: 0</p>
+        <button id="retry-button">Еще раз играть</button>
+        <button id="menu-button">Главное меню</button>
+    </div>
+
+    <!-- Подключение скрипта -->
+    <script src="script.js"></script>
+</body>
+</html>

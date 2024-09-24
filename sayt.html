@@ -1,0 +1,562 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sky Jump Adventures</title>
+    <!-- Подключение иконок Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Общие стили */
+        body {
+            margin: 0;
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(to bottom, #87CEEB, #F0E68C);
+            color: #fff;
+        }
+
+        header {
+            text-align: center;
+            padding: 50px 20px;
+            background: rgba(0, 0, 0, 0.6);
+        }
+
+        .header-buttons {
+            margin-top: 20px;
+        }
+
+        .button {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: #ffcc00;
+            color: #000;
+            text-decoration: none;
+            border-radius: 5px;
+            margin: 5px;
+            transition: background-color 0.3s;
+            cursor: pointer;
+        }
+
+        .button:hover {
+            background-color: #ffc107;
+        }
+
+        section {
+            padding: 40px 20px;
+            margin: 20px auto;
+            max-width: 1000px;
+            background: rgba(0, 0, 0, 0.7);
+            border-radius: 10px;
+        }
+
+        h2 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        /* Стили для секции О игре */
+        .features {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        .feature {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 20px;
+            border-radius: 10px;
+            width: 30%;
+            min-width: 200px;
+            text-align: center;
+            transition: transform 0.3s;
+        }
+
+        .feature:hover {
+            transform: scale(1.05);
+        }
+
+        .feature i {
+            font-size: 40px;
+            margin-bottom: 10px;
+            color: #ffcc00;
+        }
+
+        .feature h3 {
+            margin-bottom: 10px;
+        }
+
+        .feature p {
+            font-size: 16px;
+        }
+
+        /* Стили для секции Новости */
+        .news-item {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 15px;
+            transition: background 0.3s;
+        }
+
+        .news-item:hover {
+            background: rgba(255, 255, 255, 0.2);
+        }
+
+        /* Стили для секции Сообщество */
+        #community p {
+            text-align: center;
+            font-size: 18px;
+        }
+
+        /* Стили для секции Контакты */
+        .social-links {
+            list-style: none;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 15px;
+        }
+
+        .social-links li {
+        }
+
+        .social-links a {
+            color: #fff;
+            font-size: 24px;
+            transition: color 0.3s;
+        }
+
+        .social-links a:hover {
+            color: #ffcc00;
+        }
+
+        /* Стили для Футера */
+        footer {
+            text-align: center;
+            padding: 20px;
+            background: rgba(0, 0, 0, 0.6);
+            position: relative;
+        }
+
+        .footer-social-links {
+            list-style: none;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 10px;
+        }
+
+        .footer-social-links li {
+        }
+
+        .footer-social-links a {
+            color: #fff;
+            font-size: 20px;
+            transition: color 0.3s;
+        }
+
+        .footer-social-links a:hover {
+            color: #ffcc00;
+        }
+
+        /* Стили для форм авторизации */
+        .auth-container {
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            padding: 20px;
+            gap: 50px;
+            flex-wrap: wrap;
+        }
+
+        .auth-form {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 20px;
+            border-radius: 10px;
+            width: 300px;
+            color: #fff;
+            transition: background 0.3s;
+        }
+
+        .auth-form:hover {
+            background: rgba(255, 255, 255, 0.2);
+        }
+
+        .auth-form h2 {
+            text-align: center;
+            margin-bottom: 15px;
+        }
+
+        .auth-form form {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .auth-form label {
+            margin-top: 10px;
+        }
+
+        .auth-form input {
+            padding: 8px;
+            margin-top: 5px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        .auth-form .button {
+            margin-top: 15px;
+        }
+
+        .auth-form p {
+            text-align: center;
+            margin-top: 10px;
+        }
+
+        .auth-form a {
+            color: #ffcc00;
+            text-decoration: none;
+        }
+
+        .auth-form a:hover {
+            text-decoration: underline;
+        }
+
+        /* Стили для секции Пользовательские данные */
+        #userData {
+            text-align: center;
+            display: none;
+        }
+
+        #userData p {
+            font-size: 18px;
+            margin: 10px 0;
+        }
+
+        /* Стили для сообщений об ошибках */
+        .error-message {
+            color: red;
+            font-size: 14px;
+            margin-top: 5px;
+            display: none;
+        }
+
+        /* Адаптивность */
+        @media (max-width: 768px) {
+            .features {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .feature {
+                width: 80%;
+            }
+
+            .auth-container {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Sky Jump Adventures</h1>
+        <h2>Прыгайте по платформам и собирайте монеты!</h2>
+        <div class="header-buttons">
+            <a href="index.html" class="button">Играть сейчас</a>
+        </div>
+    </header>
+
+    <!-- Секции Авторизации -->
+    <section id="auth">
+        <h2>Авторизация</h2>
+        <div class="auth-container">
+            <!-- Форма Входа -->
+            <div class="auth-form" id="loginFormContainer">
+                <h2>Вход</h2>
+                <form id="loginForm">
+                    <label for="loginEmail">Email:</label>
+                    <input type="email" id="loginEmail" required>
+                    <span class="error-message" id="loginError">Неверный email или пароль.</span>
+                    
+                    <label for="loginPassword">Пароль:</label>
+                    <input type="password" id="loginPassword" required>
+                    <span class="error-message" id="loginErrorPass">Неверный пароль.</span>
+                    
+                    <button type="submit" class="button">Войти</button>
+                </form>
+                <p>Еще нет аккаунта? <a href="#" id="showSignup">Зарегистрироваться</a></p>
+            </div>
+
+            <!-- Форма Регистрации -->
+            <div class="auth-form" id="signupFormContainer" style="display: none;">
+                <h2>Регистрация</h2>
+                <form id="signupForm">
+                    <label for="signupEmail">Email:</label>
+                    <input type="email" id="signupEmail" required>
+                    <span class="error-message" id="signupError">Этот email уже зарегистрирован.</span>
+                    
+                    <label for="signupPassword">Пароль:</label>
+                    <input type="password" id="signupPassword" required>
+                    <span class="error-message" id="signupErrorPass">Пароль должен быть не менее 6 символов.</span>
+                    
+                    <button type="submit" class="button">Зарегистрироваться</button>
+                </form>
+                <p>Уже есть аккаунт? <a href="#" id="showLogin">Войти</a></p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Секция Пользовательские данные -->
+    <section id="userData">
+        <h2>Ваши данные</h2>
+        <p id="userEmail">Email: Не авторизован</p>
+        <p id="userScores">Очки: 0</p>
+        <button id="increaseScore" class="button">Добавить 10 очков</button>
+        <button id="logoutBtn" class="button">Выйти</button>
+    </section>
+
+    <section id="about">
+        <h2>О игре</h2>
+        <p>В этой игре вам предстоит прыгать с платформы на платформу, избегая падений и собирая монеты. Каждая платформа уникальна!</p>
+        <div class="features">
+            <div class="feature">
+                <i class="fas fa-bolt"></i>
+                <h3>Быстрая динамика</h3>
+                <p>Игровой процесс наполнен динамикой и адреналином.</p>
+            </div>
+            <div class="feature">
+                <i class="fas fa-star"></i>
+                <h3>Собирайте награды</h3>
+                <p>Зарабатывайте монеты и открывайте новые уровни.</p>
+            </div>
+            <div class="feature">
+                <i class="fas fa-shield-alt"></i>
+                <h3>Безопасность</h3>
+                <p>Ваши данные надежно защищены.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="news">
+        <h2>Новости и обновления</h2>
+        <div class="news-item">
+            <h3>Обновление 1.1</h3>
+            <p>Добавлены новые платформы и бонусы!</p>
+        </div>
+        <div class="news-item">
+            <h3>Событие Лето</h3>
+            <p>Соберите специальные монеты и выиграйте призы!</p>
+        </div>
+    </section>
+
+    <section id="community">
+        <h2>Сообщество</h2>
+        <p>Присоединяйтесь к нашему сообществу, обсуждайте стратегии и делитесь своими достижениями!</p>
+        <!-- Можно добавить форум или ссылки на Discord/Telegram группы -->
+    </section>
+
+    <section id="contacts">
+        <h2>Контакты</h2>
+        <p>Свяжитесь с нами через социальные сети:</p>
+        <ul class="social-links">
+            <li><a href="https://www.facebook.com/skyjump" target="_blank"><i class="fab fa-facebook-f"></i></a></li>
+            <li><a href="https://www.twitter.com/skyjump" target="_blank"><i class="fab fa-twitter"></i></a></li>
+            <li><a href="https://www.instagram.com/skyjump" target="_blank"><i class="fab fa-instagram"></i></a></li>
+            <li><a href="https://www.youtube.com/skyjump" target="_blank"><i class="fab fa-youtube"></i></a></li>
+        </ul>
+    </section>
+
+    <footer>
+        <p>© 2024 Sky Jump Adventures. Все права защищены.</p>
+        <ul class="footer-social-links">
+            <li><a href="https://www.facebook.com/skyjump" target="_blank"><i class="fab fa-facebook-f"></i></a></li>
+            <li><a href="https://www.twitter.com/skyjump" target="_blank"><i class="fab fa-twitter"></i></a></li>
+            <li><a href="https://www.instagram.com/skyjump" target="_blank"><i class="fab fa-instagram"></i></a></li>
+            <li><a href="https://www.youtube.com/skyjump" target="_blank"><i class="fab fa-youtube"></i></a></li>
+        </ul>
+    </footer>
+
+    <script>
+        // Получение элементов форм и кнопок
+        const loginFormContainer = document.getElementById('loginFormContainer');
+        const signupFormContainer = document.getElementById('signupFormContainer');
+        const showSignup = document.getElementById('showSignup');
+        const showLogin = document.getElementById('showLogin');
+
+        // Получение элементов пользовательских данных
+        const userDataSection = document.getElementById('userData');
+        const userEmailElem = document.getElementById('userEmail');
+        const userScoresElem = document.getElementById('userScores');
+        const increaseScoreBtn = document.getElementById('increaseScore');
+        const logoutBtn = document.getElementById('logoutBtn');
+
+        // Получение элементов сообщений об ошибках
+        const loginError = document.getElementById('loginError');
+        const loginErrorPass = document.getElementById('loginErrorPass');
+        const signupError = document.getElementById('signupError');
+        const signupErrorPass = document.getElementById('signupErrorPass');
+
+        // Переменные для хранения состояния пользователя
+        let currentUser = null;
+
+        // Функция для проверки, зарегистрирован ли пользователь
+        function isUserRegistered(email) {
+            const users = JSON.parse(localStorage.getItem('users')) || {};
+            return users.hasOwnProperty(email);
+        }
+
+        // Функция для регистрации пользователя
+        function registerUser(email, password) {
+            const users = JSON.parse(localStorage.getItem('users')) || {};
+            if (isUserRegistered(email)) {
+                return { success: false, message: 'Этот email уже зарегистрирован.' };
+            }
+            if (password.length < 6) {
+                return { success: false, message: 'Пароль должен быть не менее 6 символов.' };
+            }
+            users[email] = { password: password, scores: 0 };
+            localStorage.setItem('users', JSON.stringify(users));
+            return { success: true };
+        }
+
+        // Функция для входа пользователя
+        function loginUser(email, password) {
+            const users = JSON.parse(localStorage.getItem('users')) || {};
+            if (!isUserRegistered(email)) {
+                return { success: false, message: 'Неверный email или пароль.' };
+            }
+            if (users[email].password !== password) {
+                return { success: false, message: 'Неверный пароль.' };
+            }
+            return { success: true, user: { email: email, scores: users[email].scores } };
+        }
+
+        // Функция для отображения данных пользователя
+        function displayUserData(user) {
+            userEmailElem.textContent = `Email: ${user.email}`;
+            userScoresElem.textContent = `Очки: ${user.scores}`;
+            userDataSection.style.display = 'block';
+            document.getElementById('auth').style.display = 'none';
+        }
+
+        // Функция для скрытия данных пользователя
+        function hideUserData() {
+            userDataSection.style.display = 'none';
+            document.getElementById('auth').style.display = 'block';
+        }
+
+        // Показать форму регистрации
+        showSignup.addEventListener('click', (e) => {
+            e.preventDefault();
+            loginFormContainer.style.display = 'none';
+            signupFormContainer.style.display = 'block';
+            clearErrors();
+        });
+
+        // Показать форму входа
+        showLogin.addEventListener('click', (e) => {
+            e.preventDefault();
+            signupFormContainer.style.display = 'none';
+            loginFormContainer.style.display = 'block';
+            clearErrors();
+        });
+
+        // Очистка сообщений об ошибках
+        function clearErrors() {
+            loginError.style.display = 'none';
+            loginErrorPass.style.display = 'none';
+            signupError.style.display = 'none';
+            signupErrorPass.style.display = 'none';
+        }
+
+        // Обработка регистрации
+        const signupForm = document.getElementById('signupForm');
+        signupForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            clearErrors();
+            const email = document.getElementById('signupEmail').value.trim();
+            const password = document.getElementById('signupPassword').value.trim();
+
+            const result = registerUser(email, password);
+            if (result.success) {
+                alert('Регистрация прошла успешно!');
+                signupForm.reset();
+                signupFormContainer.style.display = 'none';
+                loginFormContainer.style.display = 'block';
+            } else {
+                if (result.message === 'Этот email уже зарегистрирован.') {
+                    signupError.textContent = result.message;
+                    signupError.style.display = 'block';
+                } else if (result.message === 'Пароль должен быть не менее 6 символов.') {
+                    signupErrorPass.textContent = result.message;
+                    signupErrorPass.style.display = 'block';
+                }
+            }
+        });
+
+        // Обработка входа
+        const loginForm = document.getElementById('loginForm');
+        loginForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            clearErrors();
+            const email = document.getElementById('loginEmail').value.trim();
+            const password = document.getElementById('loginPassword').value.trim();
+
+            const result = loginUser(email, password);
+            if (result.success) {
+                currentUser = result.user;
+                displayUserData(currentUser);
+                localStorage.setItem('currentUser', JSON.stringify(currentUser));
+                loginForm.reset();
+            } else {
+                if (result.message === 'Неверный email или пароль.') {
+                    loginError.textContent = result.message;
+                    loginError.style.display = 'block';
+                } else if (result.message === 'Неверный пароль.') {
+                    loginErrorPass.textContent = result.message;
+                    loginErrorPass.style.display = 'block';
+                }
+            }
+        });
+
+        // Обработка выхода из аккаунта
+        logoutBtn.addEventListener('click', () => {
+            currentUser = null;
+            localStorage.removeItem('currentUser');
+            hideUserData();
+            alert('Вы успешно вышли из аккаунта.');
+        });
+
+        // Обработка добавления очков
+        increaseScoreBtn.addEventListener('click', () => {
+            if (currentUser) {
+                currentUser.scores += 10;
+                userScoresElem.textContent = `Очки: ${currentUser.scores}`;
+                localStorage.setItem('currentUser', JSON.stringify(currentUser));
+
+                // Обновление очков в LocalStorage
+                const users = JSON.parse(localStorage.getItem('users')) || {};
+                if (users[currentUser.email]) {
+                    users[currentUser.email].scores = currentUser.scores;
+                    localStorage.setItem('users', JSON.stringify(users));
+                }
+            } else {
+                alert('Пожалуйста, войдите в свой аккаунт.');
+            }
+        });
+
+        // Проверка, есть ли текущий пользователь при загрузке страницы
+        window.onload = function() {
+            const storedUser = JSON.parse(localStorage.getItem('currentUser'));
+            if (storedUser) {
+                currentUser = storedUser;
+                displayUserData(currentUser);
+            }
+        }
+    </script>
+</body>
+</html>
